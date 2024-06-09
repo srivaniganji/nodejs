@@ -17,7 +17,7 @@ const startServer = () => {
 startServer();
 
 mongoose
-  .connect("mongodb://localhost:27017/")
+  .connect("mongodb://localhost:27017/FirstDB")
   .then(() => console.log("MongoDB connected successfully"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -29,7 +29,7 @@ const userSchema1 = new mongoose.Schema({
 
 const User = mongoose.model("user-logins", userSchema1);
 
-app.get("/login", async (req, res) => {
+app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const newUser = await new User({ username, password });
   newUser.save();
