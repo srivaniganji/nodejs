@@ -29,9 +29,11 @@ const userSchema1 = new mongoose.Schema({
 
 const User = mongoose.model("user-logins", userSchema1);
 
-app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const newUser = await new User({ username, password });
-  newUser.save();
-  res.status(200).send("uploaded");
+app.get("/login", async (req, res) => {
+  // const { username, password } = req.body;
+  // const newUser = await new User({ username, password });
+  // newUser.save();
+  //res.status(200).send("uploaded");
+  const data = await User.find();
+  res.send(data);
 });
